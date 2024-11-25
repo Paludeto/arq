@@ -1,0 +1,106 @@
+a) Considerando o conjunto de registradores apresentados em aula, quais registradores você utilizou
+
+para armazenar os argumentos da função? Por que?
+
+	Os registradores $a, de $a0 até $a3, para seguir a convenção estabelecida na chamada de procedimentos.
+
+c) Qual registrador você acha mais adequado para armazenar o valor de retorno da função folha?
+
+	O registrador $v0, a fim de seguir a convenção de chamada de procedimentos.
+
+
+TRADUÇÃO:
+
+	folha:
+
+		addi $sp, $sp, -4
+	
+		sw $s0, 4($sp)
+
+		add $s1, $a0, $a1
+		add $s2, $a2, $a3
+		sub $s0, $s1, $s2
+		
+		move $v0, $s0
+
+		lw $s0, 4($sp)
+		addi $sp, $sp, 4
+
+		jr $ra
+
+===//===//===//===//===// ===//===//===//===//===//
+
+	addi $sp, $sp, -4
+	
+	Instrução tipo I.
+	001000 | 11101 | 11101 | 1111 1111 1111 1100
+	
+	Opcode -> 8
+	Source -> 29
+	Target -> 29
+	Immediate-value -> -4
+
+===//===//===//===//===// ===//===//===//===//===//
+	
+	sw $s0, 4($sp)
+
+	Instrução tipo I.
+	101011 | 11101 | 10000 | 0000 0000 0000 0100
+
+	Opcode -> 43
+	Source -> 29
+	Target -> 16
+	Immediate-value (offset) -> 1 word
+
+
+===//===//===//===//===// ===//===//===//===//===//
+
+	add $s1, $a0, $a1
+	add $s2, $a2, $a3
+	sub $s0, $s1, $s2
+
+	Instruções tipo R.
+
+	000000 | 00100 | 00101 | 10001 | 00000 | 100000
+	
+	000000 | 00110 | 00111 | 10010 | 00000 | 100000
+	
+	000000 | 10001 | 10010 | 10000 | 00000 | 100010
+
+===//===//===//===//===// ===//===//===//===//===//
+
+	move $v0, $s0
+
+	Instrução tipo R.
+
+	000000 | 10000 | 00000 | 00010 | 100000
+
+===//===//===//===//===// ===//===//===//===//===//
+
+	lw $s0, 4($sp)
+
+	Instrução tipo I.
+	
+	100011 | 11101 | 10000 | 0000 0000 0000 0100
+
+===//===//===//===//===// ===//===//===//===//===//
+
+
+	addi $sp, $sp, 4
+
+	Instrução tipo I.
+
+	001000 | 11101 | 11101 | 0000 0000 0000 0100
+
+===//===//===//===//===// ===//===//===//===//===//
+
+	
+	jr $ra
+
+	Instrução tipo J.
+
+	000000 | 11111 00000 00000 00000 001000
+
+	
+
+	
