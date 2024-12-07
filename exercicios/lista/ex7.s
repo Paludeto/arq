@@ -1,3 +1,5 @@
+# 7) Faça um programa, em assembly do mips, que receba dois inteiros do teclado, e imprima o maior. Se os números forem iguais imprima -111.
+
 .data
 	string1: .asciiz "Digite o primeiro valor\n"
 	string2: .asciiz "Digite o segundo valor\n"
@@ -24,7 +26,7 @@
 		
 		move $t1, $v0
 		
-	# Carrega 1 no registrador $s0 para utilizá-lo em SLT e SGT
+	# Carrega 1 no registrador $s0 para utilizá-lo na comparação de SLT e SGT
 		li $s0, 1
 		
 	# Caso $t0 > $t1, pular para primeiro maior

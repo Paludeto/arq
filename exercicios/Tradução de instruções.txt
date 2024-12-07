@@ -10,7 +10,7 @@ d) beq $zero, $t3, 100
 
 e) j 200
 
-===//===
+=========================================================================================
 
 a) 000000 |  01001 | 01010 | 01000 | 00000 | 100000 | 
    0x012A6020 (separando de um em um byte)
@@ -18,11 +18,15 @@ OPCODE (0), SOURCE (9), TARGET (10), DESTINATION (8), SHAMT (0), FUNCT (32)
 
 FORMATO R
 
+=========================================================================================
+
 b) 001000 | 00000 | 01000 | 0000 0000 0001 0100
    0X20080014
 OPCODE (8), SOURCE (0), TARGET (8), IMMEDIATE (20)
 
 FORMATO I
+
+=========================================================================================
 
 c) 000000 | 00000 | 01000 | 01000 | 00010 | 000000
    0X00084080
@@ -30,12 +34,16 @@ OPCODE (0), SOURCE NÃO É USADO (0), TARGET (8), DESTINATION (8), SHAMT (2), FU
 
 FORMATO R COM SHAMT
 
+=========================================================================================
+
 d) 000100 | 00000 | 01011 | 0000 0000 0001 1001
     0x100B0019
 OPCODE (4), SOURCE (0), TARGET (11), IMMEDIATE (25)
 Neste caso, o campo de immediate representa o offset de 100 bytes, que é igual 25 WORDS.
 
 FORMATO I 
+
+=========================================================================================
 
 e) 000010 | 0000 0000 0000 0000 0011 001000
    0X080000C8
@@ -45,12 +53,16 @@ Neste caso, o campo word-address representa um offset de 50 words (200 / 4).
 
 FORMATO J
 
+=========================================================================================
+
 
 Observações importantes: 
 
-- Instruções formato R sempre possuem opcode igual a 0. Também possuem um registrador chamado de destination, onde o resultado da operação será armazenado. Além disso, possuem shift-amount (SHAMT) para o número de bits deslocados (se houver) e o campo funct para especificar a operação (sll, add, mul, div, etc).
+- Instruções formato R sempre possuem opcode igual a 0. Também possuem um registrador chamado de destination, onde o resultado da operação será armazenado. 
+   Além disso, possuem shift-amount (SHAMT) para o número de bits deslocados (se houver) e o campo funct para especificar a operação (sll, add, mul, div, etc).
 
-- Instruções formato I (operações com imediatos) possuem opcodes variáveis mas não possuem registradores destination. Apenas source e target. Possuem 16 bits para um imediato, que pode representar um valor adicionado ou um offset de words (caso de branching).
+- Instruções formato I (operações com imediatos) possuem opcodes variáveis mas não possuem registradores destination. 
+   Apenas source e target. 
+   Possuem 16 bits para um imediato, que pode representar um valor adicionado ou um offset de words (caso de branching).
 
 - Instruções formato J representam instruções de salto. Recebem apenas o opcode e o offset em words.
-

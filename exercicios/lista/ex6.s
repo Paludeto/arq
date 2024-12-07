@@ -1,3 +1,6 @@
+# 6) Faça um programa, em assembly do mips, que receba um valor inteiro do teclado, se esse valor for igual a 10 imprima-o na tela e saia do programa. 
+# Senão imprima 0 e saia do programa.
+
 .data
 
 .text
